@@ -1,0 +1,24 @@
+{
+  "template": "https://github.com/monarch-initiative/monarch-project-template",
+  "commit": "8d5c84f22159bf7181ba86dabc2eea7e93551413",
+  "checkout": null,
+  "context": {
+    "cookiecutter": {
+      "project_name": "pheval_semphen",
+      "github_org_name": "Org_X",
+      "__project_slug": "pheval_semphen",
+      "project_description": "semsimian + phenio.db for phenopacket disease prioritization",
+      "min_python_version": "3.9",
+      "file_name": "pheval_semphen",
+      "greeting_recipient": "World",
+      "full_name": "Aaron Odell",
+      "email": "aaron@tislab.org",
+      "__author": "Aaron Odell <aaron@tislab.org>",
+      "license": "MIT",
+      "github_token_for_doc_deployment": "GH_TOKEN",
+      "github_token_for_pypi_deployment": "PYPI_TOKEN",
+      "_template": "https://github.com/monarch-initiative/monarch-project-template"
+    }
+  },
+  "directory": null
+}
