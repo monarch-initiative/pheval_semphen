@@ -12,7 +12,7 @@ from pheval.utils.phenopacket_utils import phenopacket_reader
 from pheval.utils.phenopacket_utils import PhenopacketUtil
 
 # Semsimian
-#from semsimian import Semsimian
+from semsimian import Semsimian
 
 
 @click.group()
@@ -79,7 +79,7 @@ def get_phenotype_associations(input_path, output_path, phenio_path):
     print("- Found {} file(s) to process...".format(format(len(infiles), ',')))
     
     # Initiate semsimian object
-    #semsim = Semsimian(predicates=["rdfs:subClassOf"], spo=None, resource_path=phenio_path)
+    semsim = Semsimian(predicates=["rdfs:subClassOf"], spo=None, resource_path=phenio_path)
     print("- Semsimian object loaded with data from {}".format(phenio_path))
     
     # Loop through data perform semsimians associations_search method on phenopacket hp terms
@@ -93,16 +93,16 @@ def get_phenotype_associations(input_path, output_path, phenio_path):
         phenotype_ids = [observed_phenotype.type.id for observed_phenotype in observed_phenotypes]
         
         # Perform search (results are sorted in order of best ranking to worst ranking)
-        # results =  semsim.associations_search(object_closure_predicate_terms={"biolink:has_phenotype"},
-        #                                       object_terms=set(phenotype_ids),
-        #                                       include_similarity_object=False,
-        #                                       subject_terms=None,
-        #                                       subject_prefixes=["MONDO:"],
-        #                                       search_type="full",
-        #                                       score_metric="ancestor_information_content",
-        #                                       limit=10000,
-        #                                       direction="object_to_subject")
-        results = [[0,0,"A"], [1,1,"B"], [2,2,"C"]]
+        results =  semsim.associations_search(object_closure_predicate_terms={"biolink:has_phenotype"},
+                                              object_terms=set(phenotype_ids),
+                                              include_similarity_object=False,
+                                              subject_terms=None,
+                                              subject_prefixes=["MONDO:"],
+                                              search_type="full",
+                                              score_metric="ancestor_information_content",
+                                              limit=10000,
+                                              direction="object_to_subject")
+        ###results = [[0,0,"A"], [1,1,"B"], [2,2,"C"]] Testing purposes
         
         # Results are originally in form of [[score, details, mondo_id], ...]
         results = np.asarray(results).T
@@ -118,8 +118,8 @@ def get_phenotype_associations(input_path, output_path, phenio_path):
                      ).to_csv(outname, sep='\t', header=True, index=False)
         
         processed += 1
-        if processed >= 10:
-            break
+        ##if processed >= 10:
+        ##    break
     
 
 main.add_command(get_phenotype_associations, name="rank-associations")
@@ -127,25 +127,3 @@ main.add_command(get_phenotype_associations, name="rank-associations")
 
 if __name__ == '__main__':
     main()
-
-    #base_dir = "/Users/ao33/Desktop/PHEVAL_EXOMISER_PERFORMANCE_DIFFERENCE/monarch_pheval/corpora/"
-    #lirical_filepath = Path("{}{}".format(base_dir, "lirical/default/phenopackets/"))
-    #output_path = "/Users/ao33/Desktop/semsim_executable_test"
-    #phenio_path = "/Users/ao33/Desktop/TISLAB/ANALYSIS_NOTEBOOKS/phenio.db"
-
-    #sssom_path = "/Users/ao33/Desktop/TISLAB/ANALYSIS_NOTEBOOKS/mondo.sssom.tsv"
-    #fourk_filepath = Path("{}{}".format(base_dir, "4k/default/phenopackets/"))
-
-
-
-    #infiles, outfiles = gather_input_output_info(lirical_filepath, output_path, results_suffix="_results.tsv")
-    #get_phenotype_associations(lirical_filepath, output_path, phenio_path)
-
-
-
-
-
-
-
-    
-    #cli()
