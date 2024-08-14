@@ -109,8 +109,6 @@ def get_phenotype_associations(input_path, output_path, phenio_path):
         
         # Convert to dataframe and write data. 
         # TO DO: potentially need to map disease_identifier to something else, and bring in disease_name through sssom file...
-        # This will currently output data in a pheval friendly way so that there is no postprocessing necessary EXCEPT for simply
-        # copying the files over to the pheval_results directory.
         pd.DataFrame({"rank":np.arange(1, len(results[0])+1),
                       "score":np.round(results[0].astype(float), decimals=4),
                       "disease_name":".",
