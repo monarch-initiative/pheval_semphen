@@ -11,6 +11,7 @@ from pheval_semphen.prepare.tool_specific_configuration_options import SemphenCo
 
 def run_semphen_local(input_dir: Path,
                       output_dir: Path,
+                      tool_input_commands_path: str,
                       config: SemphenConfigurations) -> None:
     """
     Run Semphen locally
@@ -24,6 +25,10 @@ def run_semphen_local(input_dir: Path,
                     "-i", input_dir,
                     "-o", output_dir,
                     "-p", config.path_to_phenio]
+    
+    # Write command to file
+    with open(tool_input_commands_path, 'w') as outfile:
+        outfile.write(' '.join([str(v) for v in subp_command])) # Must convert Path objects to strings
     
     # Run semphen through subprocss
     subprocess.run(subp_command, shell=False)
