@@ -27,10 +27,13 @@ def convert_to_pheval_disease_results(res_path: str, output_dir: str):
                                    score=float(d[1])) for d in zip(ranks, scores, names, ids)]
         
     # Now leverage pheval to write disease results to disease results directory with accompanying filename suffixs
+    # Note, that we need to format samplename_results.tsv --> samplename.tsv so that the pheval post_processing .stem
+    # function will pull in the appropriate sample name
+    tool_res_path = Path(res_path.replace("_results", ''))
     pheval_res = generate_pheval_result(pheval_result=results,
                                         sort_order_str='descending', # We want highest score first
                                         output_dir=output_dir,
-                                        tool_result_path=Path(res_path.split("_results.tsv")[0]))
+                                        tool_result_path=tool_res_path)
         
 
 def raw_results_to_pheval(raw_results_dir: str, 
