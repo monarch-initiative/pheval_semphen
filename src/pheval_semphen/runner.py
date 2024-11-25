@@ -74,13 +74,16 @@ class SemphenPhevalRunner(PhEvalRunner):
         """
         post_process method
         """
+        
+        # Disease results
+        if self.input_dir_config.disease_analysis == True:
+            for fname in files_with_suffix(self.raw_results_dir, suffix='.tsv'):
+                self.convert_to_pheval_disease_results(str(fname), self.output_dir)
+        
+        # TO DO: Potentially
+        ##if gene_analysis == True:
+        ##if variant_analysis == True:
 
-        self.raw_results_to_pheval(raw_results_dir=self.raw_results_dir,
-                                   output_dir=self.output_dir,
-                                   disease_analysis=self.input_dir_config.disease_analysis,
-                                   gene_analysis=self.input_dir_config.gene_analysis,
-                                   variant_analysis=self.input_dir_config.variant_analysis)
-            
     
     # Run (main function )
     def run_semphen_local(self,input_dir: Path,
@@ -135,22 +138,4 @@ class SemphenPhevalRunner(PhEvalRunner):
                                             sort_order_str='descending', # We want highest score first
                                             output_dir=output_dir,
                                             tool_result_path=tool_res_path)
-            
-
-    # Post Process (main function)
-    def raw_results_to_pheval(self, raw_results_dir: str, 
-                                    output_dir: str, 
-                                    disease_analysis: bool=True, 
-                                    gene_analysis: bool=False, 
-                                    variant_analysis: bool=False):
-
-        # Disease results
-        if disease_analysis == True:
-            for fname in files_with_suffix(raw_results_dir, suffix='.tsv'):
-                self.convert_to_pheval_disease_results(str(fname), output_dir)
-        
-        # TO DO: Potentially
-        ##if gene_analysis == True:
-        ##if variant_analysis == True:
-
 
