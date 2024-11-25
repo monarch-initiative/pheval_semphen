@@ -1,6 +1,0 @@
-tool: semphen
-tool_version: null
-config: pheval_semphen/test_configs
-run_timestamp: 1723244119.793663
-corpus: default/phenopackets
-tool_specific_configuration_options: null

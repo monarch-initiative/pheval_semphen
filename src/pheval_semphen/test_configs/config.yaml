@@ -5,6 +5,5 @@ gene_analysis: False
 disease_analysis: True
 tool_specific_configuration_options:
   environment: local
-  path_to_semphen: semphen.py
-  #path_to_semphen: /Users/ao33/Desktop/PHEVAL_RUNNER_TESTING/pheval_semphen/src/pheval_semphen/semphen.py
-  path_to_phenio: /Users/ao33/Desktop/TISLAB/ANALYSIS_NOTEBOOKS/phenio.db
+  path_to_semphen: path/to/semphen.py
+  path_to_phenio: path/to/phenio.db
