@@ -29,7 +29,8 @@ sphinx-click = {version = ">=4.3.0"}
 myst-parser = {version = ">=0.18.1"}
 
 [tool.poetry.scripts]
-pheval_semphen = "pheval_semphen.cli:main"
+##pheval_semphen = "pheval_semphen.cli:main"
+run_semphen = "pheval_semphen.semphen:main"
 
 [tool.poetry-dynamic-versioning]
 enable = true

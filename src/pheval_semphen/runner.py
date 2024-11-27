@@ -6,6 +6,7 @@ import pandas as pd
 from pathlib import Path
 from packaging import version
 from dataclasses import dataclass
+from typing import Optional
 from pydantic import (BaseModel, 
                       Field)
 
@@ -28,8 +29,8 @@ class SemphenConfigurations(BaseModel):
     """
 
     environment: str = Field(...)
-    path_to_semphen: str = Field(...)
     path_to_phenio: str = Field(...)
+    path_to_semphen: Optional[str] = None
 
 
 @dataclass
@@ -93,15 +94,18 @@ class SemphenPhevalRunner(PhEvalRunner):
         """
         Run Semphen locally
         """
-        print("...running semphen")
 
         # Combine arguments into subprocess friendly command format
-        subp_command = ["python",
-                        config.path_to_semphen,
-                        "rank-associations",
-                        "-i", input_dir,
-                        "-o", output_dir,
-                        "-p", config.path_to_phenio]
+        if config.path_to_semphen != None:
+            subp_command = ["python", config.path_to_semphen]
+        else:
+            subp_command = ["run_semphen"]
+        
+        # Add the rest of our command options
+        subp_command += ["rank-associations",
+                         "-i", input_dir,
+                         "-o", output_dir,
+                         "-p", config.path_to_phenio]
         
         # Write command to file
         with open(tool_input_commands_path, 'w') as outfile:
