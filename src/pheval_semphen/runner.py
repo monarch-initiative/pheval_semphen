@@ -49,11 +49,11 @@ class SemphenPhevalRunner(PhEvalRunner):
 
     def prepare(self):
         """
-        prepare method
+        prepare method (Currently un-used for this runner)
         """
-        print("preparing")
-
+        dummy_variable = 0
     
+
     def run(self):
         """
         Generates semphen command line call and writes to file, then runs the command through subprocess
@@ -99,7 +99,7 @@ class SemphenPhevalRunner(PhEvalRunner):
         if config.path_to_semphen != None:
             subp_command = ["python", config.path_to_semphen]
         else:
-            subp_command = ["run_semphen"]
+            subp_command = ["pheval-semphen"]
         
         # Add the rest of our command options
         subp_command += ["rank-associations",

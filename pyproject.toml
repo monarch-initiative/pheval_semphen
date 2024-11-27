@@ -1,10 +1,10 @@
 [tool.poetry]
 name = "pheval_semphen"
-version = "0.0.0"
-description = "pheval_semphen"
+version = "0.1.0"
+description = "Pheval runner for semsimian + phenio db + MONDO (semphen) for disease prioritization via phenotype similarities"
 authors = ["Aaron Odell <aaron@tislab.org>"]
-license = "MIT"
 readme = "README.md"
+packages = [{ include = "pheval_semphen", from = "src" }]
 
 [tool.poetry.dependencies]
 python = "^3.9"
@@ -29,8 +29,7 @@ sphinx-click = {version = ">=4.3.0"}
 myst-parser = {version = ">=0.18.1"}
 
 [tool.poetry.scripts]
-##pheval_semphen = "pheval_semphen.cli:main"
-run_semphen = "pheval_semphen.semphen:main"
+pheval-semphen = "pheval_semphen.semphen:main"
 
 [tool.poetry-dynamic-versioning]
 enable = true
@@ -76,9 +75,9 @@ count = ""
 quiet-level = 3
 # ignore-words-list = ""
 
-[build-system]
-requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning"]
-build-backend = "poetry_dynamic_versioning.backend"
-
 [tool.poetry.plugins."pheval.plugins"]
 customrunner = "pheval_semphen.runner:SemphenPhevalRunner"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
