@@ -79,5 +79,9 @@ quiet-level = 3
 customrunner = "pheval_semphen.runner:SemphenPhevalRunner"
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning"]
+build-backend = "poetry_dynamic_versioning.backend"
+
+##[build-system]
+##requires = ["poetry-core"]
+##build-backend = "poetry.core.masonry.api"
