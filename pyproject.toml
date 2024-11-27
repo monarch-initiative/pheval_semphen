@@ -35,6 +35,7 @@ pheval-semphen = "pheval_semphen.semphen:main"
 enable = true
 vcs = "git"
 style = "pep440"
+format = "{base}"
 
 [tool.black]
 line-length = 120
@@ -78,11 +79,6 @@ quiet-level = 3
 [tool.poetry.plugins."pheval.plugins"]
 customrunner = "pheval_semphen.runner:SemphenPhevalRunner"
 
-## Breaks when trying to publish via git actions 
-##[build-system]
-##requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning"]
-##build-backend = "poetry_dynamic_versioning.backend"
-
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning"]
+build-backend = "poetry_dynamic_versioning.backend"
